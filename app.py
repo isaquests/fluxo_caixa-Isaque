@@ -82,7 +82,14 @@ fig_linha = px.line(
     markers=True
 )
 
-st.plotly_chart(fig_linha, use_container_width=True)
+st.plotly_chart(
+    fig_saldo,
+    use_container_width=True,
+    config={
+        "scrollZoom": False,
+        "displayModeBar": False
+    }
+)
 
 # ----------------------------
 # GRÁFICO 3 - Comparação Entradas x Saídas
