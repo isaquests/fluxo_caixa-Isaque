@@ -83,12 +83,9 @@ fig_linha = px.line(
 )
 
 st.plotly_chart(
-    fig_saldo,
+    fig_linha,
     use_container_width=True,
-    config={
-        "scrollZoom": False,
-        "displayModeBar": False
-    }
+    config={"displayModeBar": False}
 )
 
 # ----------------------------
