@@ -5,8 +5,18 @@ import plotly.express as px
 # ----------------------------
 # CONFIGURAÇÃO
 # ----------------------------
+
+#st.title("Dashboard Financeiro")
+
+st.markdown(
+    """
+    <h1 style='text-align: center; margin-bottom: 40px;'>
+        💰 Dashboard Financeiro
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
 st.set_page_config(layout="wide")
-st.title("Dashboard Financeiro")
 
 # ----------------------------
 # LEITURA DA PLANILHA
