@@ -64,26 +64,25 @@ st.divider()
 # ----------------------------
 # GRÁFICO 2 - Evolução dos Gastos
 # ----------------------------
-st.subheader("Evolução dos Gastos")
+st.subheader("Evolução Mensal dos Gastos")
 
-evolucao = (
+df_saida["MES"] = df_saida["DATA"].dt.to_period("M").astype(str)
+
+mensal = (
     df_saida
-    .groupby("DATA")["VALOR"]
+    .groupby("MES")["VALOR"]
     .sum()
     .reset_index()
-    .sort_values("DATA")
 )
 
 fig_linha = px.line(
-    evolucao,
-    x="DATA",
+    mensal,
+    x="MES",
     y="VALOR",
     markers=True
 )
 
 st.plotly_chart(fig_linha, use_container_width=True)
-
-st.divider()
 
 # ----------------------------
 # GRÁFICO 3 - Comparação Entradas x Saídas
@@ -96,7 +95,14 @@ fig_barra = px.bar(
     comparativo,
     x="TIPO",
     y="VALOR",
-    text_auto=True
+    text="VALOR",
+    color="TIPO",
+    color_discrete_map={
+        "Entrada": "green",
+        "Saída": "red"
+    }
 )
+
+fig_barra.update_traces(texttemplate="R$ %{text:,.2f}", textposition="outside")
 
 st.plotly_chart(fig_barra, use_container_width=True)
